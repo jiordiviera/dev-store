@@ -155,7 +155,7 @@ class OrderResource extends Resource
                                     $total += $get("items.$key.total_amount");
                                 }
                                 $set('grand_total', $total);
-                                return Number::currency($total, 'XAF');
+                                return Number::currency($total, 'INR');
                             }),
 
                         Forms\Components\Hidden::make('grand_total')
@@ -177,7 +177,7 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('grand_total')
                     ->numeric()
                     ->sortable()
-                    ->money('XAF'),
+                    ->money('INR'),
                 Tables\Columns\TextColumn::make('payment_method')
                     ->searchable()
                     ->sortable(),
