@@ -15,7 +15,8 @@ class OrdersStats extends BaseWidget
             Stat::make('Nouvelles Commandes', Order::query()->where('status', 'new')->count()),
             Stat::make('Commandes En Cours', Order::query()->where('status', 'processing')->count()),
             Stat::make('Commandes Payées', Order::query()->where('status', 'shipped')->count()),
-            Stat::make('Prix moyen', Number::currency(Order::query()->avg('grand_total'), 'INR')),
+            Stat::make('Prix moyen', Number::currency(Order::query()->sum('grand_total'), 'XAF')),
+            Stat::make('Prix moyen', Number::currency(Order::query()->sum('grand_total'), 'XAF')),
         ];
     }
 }
