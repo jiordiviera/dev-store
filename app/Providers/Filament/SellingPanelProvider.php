@@ -28,6 +28,7 @@ class SellingPanelProvider extends PanelProvider
             ->id('selling')
             ->path('selling')
             ->login()
+            ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,
             ])

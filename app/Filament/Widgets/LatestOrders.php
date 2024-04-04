@@ -30,7 +30,7 @@ class LatestOrders extends BaseWidget
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('grand_total')
-                    ->money('INR'),
+                    ->money('XAF'),
 
                 Tables\Columns\TextColumn::make('status')
                     ->badge()

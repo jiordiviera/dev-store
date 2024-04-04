@@ -32,7 +32,7 @@ class ProductResource extends Resource
                 Forms\Components\Group::make()->schema([
                     Forms\Components\Section::make('Information du Produit')
                         ->schema([
-                           Forms\Components\TextInput::make('name')
+                            Forms\Components\TextInput::make('name')
                                 ->required()
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(fn(string $operation, $state, Set $set) => $operation == 'create' ? $set('slug', Str::slug($state)) : null)
@@ -43,7 +43,6 @@ class ProductResource extends Resource
                                 ->dehydrated()
                                 ->unique(Product::class, 'slug', ignoreRecord: true)
                                 ->required(),
-
                             Forms\Components\MarkdownEditor::make('description')
                                 ->columnSpanFull()
                                 ->fileAttachmentsDirectory('products'),
@@ -68,7 +67,7 @@ class ProductResource extends Resource
                                 ->label('Prix')
                                 ->numeric()
                                 ->required()
-                                ->prefix('INR'),
+                                ->prefix('XAF'),
                         ]),
                     Forms\Components\Section::make('Association')
                         ->schema([
@@ -117,7 +116,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('brand.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->money('INR')
+                    ->money('XAF')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),
