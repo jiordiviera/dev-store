@@ -19,22 +19,25 @@ class User extends Authenticatable implements FilamentUser
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'email_verified_at',
-        'password',
-        'role'
+        'name', 'email', 'password', 'role'
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'role' => 'string',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 
     /**
      * Get the attributes that should be cast.

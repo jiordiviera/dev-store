@@ -1,36 +1,47 @@
 <?php
 
+use Filament\Facades\Filament;
+use Illuminate\Support\Facades\Route;
 use App\Livewire\CartPage;
 use App\Livewire\CategoriesPage;
 use App\Livewire\HomePage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\CheckoutPage;
+use App\Livewire\MyOrdersPage;
+use App\Livewire\MyOrderDetailPage;
+use App\Livewire\SuccessPage;
+use App\Livewire\CancelPage;
+use App\Livewire\Auth\LoginPage;
+use App\Livewire\Auth\RegisterPage;
+use App\Livewire\Auth\ForgotPasswordPage;
+use App\Livewire\Auth\ResetPasswordPage;
 
+// Public routes
 Route::get('/', HomePage::class)->name('home');
-Route::get('/categories', CategoriesPage::class);
-Route::get('/products', ProductsPage::class);
-Route::get('/cart', CartPage::class);
-Route::get('products/{slug}', ProductDetailPage::class);
+Route::get('/categories', CategoriesPage::class)->name('categories');
+Route::get('/products', ProductsPage::class)->name('products');
+Route::get('/products/{slug}', ProductDetailPage::class)->name('product.detail');
+Route::get('/cart', CartPage::class)->name('cart');
 
-
+// Guest routes
 Route::middleware('guest')->group(function () {
-
-    Route::get('/login', \App\Livewire\Auth\LoginPage::class)->name('login');
-    Route::get('/register', \App\Livewire\Auth\RegisterPage::class);
-    Route::get('/forgot', \App\Livewire\Auth\ForgotPasswordPage::class)->name('password.request');
-    Route::get('/reset/{token}', \App\Livewire\Auth\ResetPasswordPage::class)->name('password.reset');
+    Route::get('/login', LoginPage::class)->name('login');
+    Route::get('/register', RegisterPage::class)->name('register');
+    Route::get('/forgot-password', ForgotPasswordPage::class)->name('password.request');
+    Route::get('/reset-password/{token}', ResetPasswordPage::class)->name('password.reset');
 });
 
+// Authenticated user routes
 Route::middleware('auth')->group(function () {
-    Route::get('logout', function () {
+    Route::get('/logout', function () {
         auth()->logout();
-        return redirect('/');
-    });
-    Route::get('/checkout', \App\Livewire\CheckoutPage::class);
-    Route::get('/my-orders', \App\Livewire\MyOrdersPage::class);
-    Route::get('/my-order/{order_id}', \App\Livewire\MyOrderDetailPage::class)->name('my-orders.show');
-
-    Route::get('/success', \App\Livewire\SuccessPage::class)->name('success');
-    Route::get('/cancel', \App\Livewire\Cancelpage::class)->name('cancel');
+        return redirect()->route('home');
+    })->name('logout');
+    Route::get('/checkout', CheckoutPage::class)->name('checkout');
+    Route::get('/my-orders', MyOrdersPage::class)->name('my-orders');
+    Route::get('/my-order/{order_id}', MyOrderDetailPage::class)->name('my-orders.show');
+    Route::get('/success', SuccessPage::class)->name('success');
+    Route::get('/cancel', CancelPage::class)->name('cancel');
 });
+

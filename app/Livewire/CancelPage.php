@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Cancelpage extends Component
+class CancelPage extends Component
 {
     public function render()
     {
