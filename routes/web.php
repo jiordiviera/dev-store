@@ -7,7 +7,7 @@ use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomePage::class);
+Route::get('/', HomePage::class)->name('home');
 Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
 Route::get('/cart', CartPage::class);

@@ -6,8 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-#[Title('Register')]
 
+#[Title('Register')]
 class RegisterPage extends Component
 {
     public $name;
@@ -24,7 +24,7 @@ class RegisterPage extends Component
             'password' => 'required|min:6|max:255|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
         ]);
 //        save to database
-       $user= User::create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
@@ -35,7 +35,8 @@ class RegisterPage extends Component
 
 //        redirect to home page
         return redirect()->intended();
-}
+    }
+
     public function render()
     {
         return view('livewire.auth.register-page');

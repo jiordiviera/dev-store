@@ -23,6 +23,7 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'email_verified_at',
         'password',
+        'role'
     ];
 
     /**
@@ -52,8 +53,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Order::class);
     }
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@gmail.com');
+        return str_ends_with($this->email, '@gmail.com') && $this->role === 'admin';
     }
 }

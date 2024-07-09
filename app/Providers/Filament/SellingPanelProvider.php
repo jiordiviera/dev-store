@@ -18,6 +18,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Swis\Filament\Backgrounds\FilamentBackgroundsPlugin;
+use Swis\Filament\Backgrounds\ImageProviders\MyImages;
 
 class SellingPanelProvider extends PanelProvider
 {
@@ -41,6 +43,16 @@ class SellingPanelProvider extends PanelProvider
             ->widgets([
                 OrdersStats::class,
             ])
+            ->plugins([
+                FilamentBackgroundsPlugin::make()
+                    ->imageProvider(
+                        MyImages::make()
+                            ->directory('images\swisnl\filament-backgrounds\curated-by-swis')
+                    )
+                    ->remember(5)
+                    ->showAttribution(false),
+            ])
+            ->brandName('dev-store')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

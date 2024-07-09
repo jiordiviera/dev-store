@@ -20,7 +20,7 @@ class ResetPasswordPage extends Component
     public $password;
     public $password_confirmation;
 
-    public function mount($token)
+    public function mount($token): void
     {
         $this->token = $token;
     }
@@ -39,7 +39,9 @@ class ResetPasswordPage extends Component
             'token' => $this->token
         ],
             function (User $user, string $password) {
-                $password = $this->password;
+                if (!empty($this->password)) {
+                    $password = $this->password;
+                }
                 $user->forceFill([
                     'password' => Hash::make($password),
                 ])->setRememberToken(Str::random(60));

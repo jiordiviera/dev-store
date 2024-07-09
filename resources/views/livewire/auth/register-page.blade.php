@@ -37,7 +37,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                @error('email')
+                                @error('name')
                                 <p class=" text-xs text-red-600 mt-2" id="email-error">{{$message}}</p>
                                 @enderror
                             </div>
@@ -59,8 +59,8 @@
                                     </div>
                                     @enderror
                                 </div>
-                                @error('password')
-                                <p class="hidden text-xs text-red-600 mt-2" id="email-error">{{$message}}</p>
+                                @error('email')
+                                <p class="text-xs text-red-600 mt-2" id="email-error">{{$message}}</p>
                                 @enderror
                             </div>
                             <!-- End Form Group -->
@@ -102,5 +102,6 @@
                     <!-- End Form -->
                 </div>
             </div>
+        </main>
     </div>
 </div>

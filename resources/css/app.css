@@ -1,3 +1,26 @@
+@import url(https://fonts.bunny.net/css?family=figtree:300,400,500,600,600i,700,800,900);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.font-sans {
+    font-family: Figtree, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji
+}
+
+@layer base {
+    * {
+        @apply box-border p-0 m-0 ;
+    }
+
+    body {
+        @apply font-sans
+    }
+
+    .logo {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+        font-size: 1em
+    }
+}
