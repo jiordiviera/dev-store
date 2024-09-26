@@ -54,6 +54,7 @@ class SellingPanelProvider extends PanelProvider
                     ->showAttribution(false),
             ])
             ->brandName('dev-store')
+            ->viteTheme('resources/css/filament/selling/theme.css')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

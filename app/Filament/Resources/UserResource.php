@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -15,6 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\View;
 
 class UserResource extends Resource
 {
@@ -76,6 +78,10 @@ class UserResource extends Resource
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\DeleteAction::make(),
+                    Action::make('generatePDF')
+                        ->label('Générer PDF')
+                        ->action(fn ($record) => static::generatePDF($record))
+                        ->icon('heroicon-o-arrow-down-tray')
                 ])
             ])
             ->bulkActions([
@@ -102,6 +108,16 @@ public static function getGloballySearchableAttributes(): array
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+            'badge'=>Pages\badge::route('/{record}/badge'),
         ];
+    }
+    public static function generatePDF($user)
+    {
+        $html = View::make('pdf.user', ['user' => $user])->render();
+//dd($html);
+        return response()->json([
+            'html' => $html,
+            'userName' => $user->name,
+        ]);
     }
 }

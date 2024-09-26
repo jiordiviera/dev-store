@@ -66,8 +66,7 @@
         <!-- Card -->
         <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
             <div class="p-4 md:p-5 flex gap-x-4">
-                <div
-                    class="flex-shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-gray-800">
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-gray-800">
                     <svg class="flex-shrink-0 size-5 text-gray-600 dark:text-gray-400"
                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -159,7 +158,6 @@
     <div class="flex flex-col md:flex-row gap-4 mt-4">
         <div class="md:w-3/4">
             <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-4">
-
                 <table class="w-full">
                     <thead>
                     <tr>

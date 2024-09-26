@@ -99,5 +99,10 @@ return [
             \App\Http\Middleware\CheckRole::class,
         ],
     ],
+    'assets' => [
+        'scripts' => [
+            'js/jspdf.js',
+        ],
+    ],
 
 ];
