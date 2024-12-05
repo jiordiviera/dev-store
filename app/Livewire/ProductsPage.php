@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Title('Products - CodeByJiordi')]
+#[Title('Products ')]
 class ProductsPage extends Component
 {
     use WithPagination;
